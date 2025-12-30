@@ -1,4 +1,4 @@
-console.log("Hello World");
+let port = 5500;
 let currentSong = new Audio();
 let songList;
 let currentFolder;
@@ -14,7 +14,7 @@ let card;
 async function getSongList(file) {
     currentFolder = file;
     let a = await fetch(
-        `http://127.0.0.1:5500/sigmaWebDev/project/spotify/${currentFolder}/`
+        `http://localhost:${port}/${currentFolder}/`
     );
     let response = await a.text();
     let div = document.createElement("div");
@@ -96,7 +96,7 @@ async function insertCard(folder, title, description) {
 
 async function displayCard() {
     const a = await fetch(
-        `http://127.0.0.1:5500/sigmaWebDev/project/spotify/song-file/`
+        `http://localhost:${port}/song-file/`
     );
     const response = await a.text();
     let div = document.createElement("div");
@@ -106,7 +106,7 @@ async function displayCard() {
         if (e.href.includes("/song-file/")) {
             let folder = e.href.split("/song-file/")[1];
             const a = await fetch(
-                `http://127.0.0.1:5500/sigmaWebDev/project/spotify/song-file/${folder}/info.json`
+                `http://localhost:${port}/song-file/${folder}/info.json`
             );
             const response = await a.json();
             let insertDiv = document.createElement("div");
